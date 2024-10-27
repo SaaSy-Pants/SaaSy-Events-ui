@@ -1,0 +1,16 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+<p-card header="Login">
+  <p class="m-0" [style]="{width: '400px'}">
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" ngModel required class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" ngModel required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+  </form>
+</p-card>
+</div>
