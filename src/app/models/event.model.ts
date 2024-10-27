@@ -1,6 +1,4 @@
 export interface Event {
-  EID: string;
-  OID: string; // Organizer ID
   Name: string;
   EventCategory: string;
   EventDesc: string;
