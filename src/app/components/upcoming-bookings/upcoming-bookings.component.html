@@ -1,7 +1,7 @@
 <h2>Upcoming Bookings</h2>
 <ul class="list-group">
   <li *ngFor="let event of bookingList" class="list-group-item">
-    <div class="card">
+    <div class="card" (click)="navigateToEvent(event.TID)">
       <div class="card-body">
         <h5 class="card-title">{{ event.Name }}</h5>
         <p class="card-text">
