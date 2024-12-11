@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
-import {CommonModule} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterLink, CommonModule
+    RouterLink, CommonModule, NgOptimizedImage
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  showUserOptions:boolean = false;
 
-  toggleUserOptions() {
-    this.showUserOptions = !this.showUserOptions;
+  constructor(private router: Router) {
   }
+
+  logout() {
+    localStorage.clear()
+    this.router.navigate(['/login']).then(() => {});
+  }
+
 }

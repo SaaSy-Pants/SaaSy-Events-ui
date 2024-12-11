@@ -1,0 +1,31 @@
+/* Navbar Background Color and Padding */
+.navbar {
+  background-color: #e1bee7 !important; /* Very light purple */
+  padding: 0 20px; /* Adjust horizontal padding */
+}
+
+/* Navbar Title and Logo */
+.navbar-brand {
+  font-weight: bold; /* Make the text bold */
+  font-size: 1.5rem; /* Increase font size */
+  color: purple; /* Make the text white for better contrast */
+}
+
+.navbar-nav .nav-link {
+  font-weight: bold; /* Make navbar links bold */
+  color: white; /* Make navbar links white */
+}
+
+/* Logout Button Styling */
+button.btn-outline-danger {
+  border-width: 2px;
+  font-weight: bold; /* Make button text bold */
+  font-size: 1.1rem; /* Increase button text size */
+  border-color: purple; /* Red border for the outline */
+  color: purple; /* Red text color */
+}
+
+button.btn-outline-danger:hover {
+  background-color: purple; /* Red background color on hover */
+  color: white; /* White text color on hover */
+}

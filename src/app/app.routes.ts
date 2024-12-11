@@ -7,7 +7,7 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },

@@ -1,41 +1,25 @@
 <div class="flex justify-content-center align-items-center min-h-screen">
-<p-card>
-  <p-tabView>
-    <p-tabPanel header="User Login" (select)="onRoleChange('user')">
-      <p class="m-0" [style]="{width: '400px'}">
-        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-        <div class="form-group">
-          <label for="user email">Email</label>
-          <input type="email" id="user email" name="email" ngModel required class="form-control" />
-         </div>
-        <div class="form-group">
-          <label for="user password">Password</label>
-          <input type="password" id="user password" name="password" ngModel required class="form-control" />
+  <p-card>
+    <p-tabView>
+      <p-tabPanel header="User Login" (select)="onRoleChange('user')">
+        <div class="m-0" [style]="{ width: '400px' }">
+          <!-- Custom Google Sign-In Button -->
+          <button class="btn btn-google w-100" (click)="signInWithGoogle()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1920px-Google_%22G%22_logo.svg.png" alt="Google Logo" class="google-logo"/>
+            Sign in with Google
+          </button>
         </div>
-        <button type="submit" class="btn btn-primary mt-2" [disabled]="!loginForm.valid">Login</button>
-      <div class="mt-4 text-center">
-        <p>Don't have an account? <a href="/signup" class="text-blue-600">Sign up</a></p>
-      </div>
-        </form>
-    </p-tabPanel>
-    <p-tabPanel header="Organiser Login" (select)="onRoleChange('organizer')">
-      <p class="m-0" [style]="{width: '400px'}">
-      <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-        <div class="form-group">
-          <label for="organiser email">Email</label>
-          <input type="email" id="organiser email" name="email" ngModel required class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="organiser password">Password</label>
-          <input type="password" id="organiser password" name="password" ngModel required class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary mt-2" [disabled]="!loginForm.valid">Login</button>
-      <div class="mt-4 text-center">
-        <p>Don't have an account? <a href="/signup" class="text-blue-600">Sign up</a></p>
-      </div>
-      </form>
-    </p-tabPanel>
-  </p-tabView>
-</p-card>
-</div>
+      </p-tabPanel>
 
+      <p-tabPanel header="Organiser Login" (select)="onRoleChange('organizer')">
+        <div class="m-0" [style]="{ width: '400px' }">
+          <!-- Custom Google Sign-In Button -->
+          <button class="btn btn-google w-100" (click)="signInWithGoogle()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1920px-Google_%22G%22_logo.svg.png" alt="Google Logo" class="google-logo"/>
+            Sign in with Google
+          </button>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-card>
+</div>

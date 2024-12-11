@@ -1,3 +1,23 @@
-button {
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* Google Blue */
+  padding: 12px 20px;
+  border-radius: 4px;
+  border: 2px solid #357ae8;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   width: 100%;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.btn-google:hover {
+  background-color: #357ae855;
 }
