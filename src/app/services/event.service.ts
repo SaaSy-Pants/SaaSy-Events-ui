@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EventService {
-  private baseUrl = 'http://localhost:8000/api';
+  private baseUrl = 'http://localhost:8001/events';
 
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/events`);
+    return this.http.get<any[]>(`${this.baseUrl}`);
   }
 
   getEventById(id: string): Observable<any> {

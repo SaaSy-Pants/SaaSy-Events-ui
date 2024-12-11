@@ -1,12 +1,20 @@
 <h2>Event List</h2>
 <ul class="list-group">
-  <div class="card" style="width: 40rem;">
-    <div class="card-body">
-      <h5 class="card-title">Event 1 </h5>
-      <h6 class="card-subtitle mb-2 text-muted">Location</h6>
-      <p class="card-text">Have fun at event </p>
+  <li *ngFor="let event of eventList" class="list-group-item">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.Name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Category: {{ event.EventCategory }}</h6>
+        <p class="card-text">{{ event.EventDesc }}</p>
+        <p class="card-text"><strong>Location:</strong> {{ event.Location }}</p>
+        <p class="card-text">
+          <strong>Date:</strong> {{ event.EventDate | date }}
+          <strong>Time:</strong> {{ event.EventTimeStart }} - {{ event.EventTimeEnd }}
+        </p>
+        <p class="card-text"><strong>Remaining Guests:</strong> {{ event.GuestsRem }}</p>
+        <p class="card-text"><strong>Max Guests per Ticket:</strong> {{ event.MaxGuestsPerTicket }}</p>
+        <p class="card-text"><strong>Price:</strong> {{ event.Price | currency }}</p>
+      </div>
     </div>
-  </div>
-  <!--<li *ngFor="let event of eventList" class="list-group-item">{{ event.name }}</li>-->
+  </li>
 </ul>
-
