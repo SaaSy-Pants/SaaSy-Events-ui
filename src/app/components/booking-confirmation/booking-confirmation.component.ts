@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TicketService } from '../../services/ticket.service';
-import { CommonModule } from '@angular/common';
-import { EventService } from "../../services/event.service";
+import { CompositeService } from "../../services/composite.service";
+import {DatePipe} from "@angular/common";
+import {TimeFormatPipe} from "../utils/time-format-pipe";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-booking-confirmation',
   templateUrl: './booking-confirmation.component.html',
   styleUrls: ['./booking-confirmation.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [
+    NgIf,
+    TimeFormatPipe,
+    DatePipe,
+  ]
 })
 export class BookingConfirmationComponent implements OnInit {
   ticketId: string = '';
@@ -22,8 +27,7 @@ export class BookingConfirmationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ticketService: TicketService,
-    private eventService: EventService
+    private compService: CompositeService,
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +40,7 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   getTicketDetails(): void {
-    this.ticketService.getTicketDetails(this.ticketId).subscribe({
+    this.compService.getTicketDetails(this.ticketId).subscribe({
       next: (details: any) => {
         this.ticketDetails = details; // Handle the ticket details
         this.eventId = details.EID;
@@ -53,7 +57,7 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   getEventDetails(): void {
-    this.eventService.getEventById(this.eventId).subscribe({
+    this.compService.getEventById(this.eventId).subscribe({
       next: (details: any) => {
         // Convert the duration format to a time string
         this.eventStartTime = this.convertDurationToTime(details.EventTimeStart);
@@ -66,7 +70,7 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   getQrcode(): void {
-    this.ticketService.getQrcode(this.ticketId).subscribe({
+    this.compService.getQrcode(this.ticketId).subscribe({
       next: (qrcodeBlob: Blob) => {
         this.qrcodeImageUrl = URL.createObjectURL(qrcodeBlob); // Convert Blob to URL
       },
