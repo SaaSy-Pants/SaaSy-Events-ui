@@ -1,0 +1,50 @@
+<div *ngIf="ticketDetails && eventDetails; else loading" class="container mt-4">
+  <!-- Ticket Details -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Ticket Information</h2>
+            <p class="card-text"><strong>Ticket ID:</strong> {{ ticketDetails.TID }}</p>
+            <p class="card-text"><strong>Number of Guests:</strong> {{ ticketDetails.NumGuests }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Details -->
+    <div class="col-md-6">
+      <div class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Event Details</h2>
+            <h5 class="card-subtitle mb-2 text-muted"> {{ eventDetails.Name }} </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Category: {{ eventDetails.EventCategory }}</h6>
+            <p class="card-text">{{ eventDetails.EventDesc }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ eventDetails.Location }}</p>
+            <p class="card-text">
+              <strong>Date:</strong> {{ eventDetails.EventDate | date }}
+              <strong>Time:</strong> {{ eventStartTime }} - {{ eventEndTime }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div *ngIf="qrcodeImageUrl" class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">QR Code</h3>
+            <img [src]="qrcodeImageUrl" alt="QR Code" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading ticket and event details...</p>
+</ng-template>

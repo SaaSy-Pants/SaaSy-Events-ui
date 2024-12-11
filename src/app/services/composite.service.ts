@@ -9,6 +9,8 @@ export class CompositeService {
   private baseEventsUrl = 'http://localhost:8001';
   private baseTicketsUrl = 'http://localhost:8002';
   private baseUsersUrl = 'http://localhost:8000';
+  private qrcodeUrl = 'https://api.qrserver.com/v1/create-qr-code'; // 3rd party api/service for QR Code
+  private ticketdetailsUrl = ' http://localhost:4200/booking-confirmation';
 
   constructor(private http: HttpClient) {}
 
@@ -40,12 +42,19 @@ export class CompositeService {
     return this.http.post(`${this.baseUsersUrl}/user`, profileData, { headers });
   }
 
-
   addEvent(event: any): Observable<any> {
     return this.http.post<any>(`${this.baseEventsUrl}/events`, event);
   }
 
   purchaseTicket(ticket: any): Observable<any> {
     return this.http.post<any>(`${this.baseTicketsUrl}/ticket`, ticket);
+  }
+
+  getTicketDetails(ticketId: string): Observable<any> {
+    return this.http.get(`${this.baseTicketsUrl}/ticket/${ticketId}`);
+  }
+
+  getQrcode(ticketId: string): Observable<Blob> {
+    return this.http.get(`${this.qrcodeUrl}/?data=${this.ticketdetailsUrl + "/" + ticketId}`, {responseType: 'blob'});
   }
 }
