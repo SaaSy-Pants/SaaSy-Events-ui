@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventService } from '../../services/event.service';
 import { CommonModule } from '@angular/common';
+import {CompositeService} from "../../services/composite.service";
 
 @Component({
   selector: 'app-event-details',
@@ -10,16 +10,16 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
 })
-export class EventDetailsComponent {
+export class EventDetailsComponent implements OnInit {
     event: any = null;
     ticketsToBuy = 1;
 
-    constructor(private route: ActivatedRoute, private eventService: EventService) {}
+    constructor(private route: ActivatedRoute, private compositeService: CompositeService) {}
 
     ngOnInit() {
         const eventId = this.route.snapshot.paramMap.get('id');
         if (eventId) {
-            this.eventService.getEventById(eventId).subscribe({
+            this.compositeService.getEventById(eventId).subscribe({
               next: (data) => {
                 // Map the API response to the expected fields
                 this.event = {
