@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit{
           this.storeTokens(accessToken, refreshToken);
         }
 
-        this.compositeService.getProfile().pipe(
+        this.compositeService.getProfile('user').pipe(
           catchError((error) => {
             if (error.status === 404) {
               this.router.navigate(['/signup']).then(_ => {})

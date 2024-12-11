@@ -30,10 +30,16 @@ export class CompositeService {
     return `${this.baseUsersUrl}/login?profile=${type}`;
   }
 
-  getProfile(): Observable<any> {
+  getProfile(role: string): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get(`${this.baseUsersUrl}/user`, { headers });
+    return this.http.get(`${this.baseUsersUrl}/${role}`, { headers });
+  }
+
+  getProfileById(role: string, id: string): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.baseUsersUrl}/${role}/${id}`, { headers });
   }
 
   createProfile(profileData: any): Observable<any> {
