@@ -25,26 +25,28 @@ export class UpcomingBookingsComponent implements OnInit {
   }
 
   loadBookings() {
-    this.compositeService.getBookings('U001').subscribe({
-      next: (bookings) => {
-        if (bookings && bookings.tickets){
-          const eventRequests = bookings.tickets.map(async (ticket: { EID: string }) =>
-            await firstValueFrom(this.compositeService.getEventById(ticket['EID']))
-          );
+    let userId = localStorage.getItem("user_id")
+    if (userId != null) {
+      this.compositeService.getBookings(userId).subscribe({
+        next: (bookings) => {
+          if (bookings && bookings.tickets) {
+            const eventRequests = bookings.tickets.map(async (ticket: { EID: string }) =>
+              await firstValueFrom(this.compositeService.getEventById(ticket['EID']))
+            );
 
-          Promise.all(eventRequests)
-            .then(events => {
-              console.log(events)
-              this.bookingList = events;
-            })
-            .catch(err => {
-              console.error('Error fetching event details:', err);
-            });
-        }
-      },
-      error: (err) => {
-        console.error('Error fetching events:', err);
-      },
-    });
+            Promise.all(eventRequests)
+              .then(events => {
+                this.bookingList = events;
+              })
+              .catch(err => {
+                console.error('Error fetching event details:', err);
+              });
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching events:', err);
+        },
+      });
+    }
   }
 }

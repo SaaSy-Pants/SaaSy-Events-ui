@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -12,10 +12,13 @@ import {CommonModule, NgOptimizedImage} from "@angular/common";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  imageAddress='./assets/logo.png';
+
+  constructor(private router: Router) {
+  }
 
   logout() {
-    console.log('Logging out...');
+    localStorage.clear()
+    this.router.navigate(['/login']).then(() => {});
   }
 
 }

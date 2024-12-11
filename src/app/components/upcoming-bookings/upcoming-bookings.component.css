@@ -18,7 +18,7 @@
 .list-group-item:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #f2f8ff;  /* Light blue background on hover */
+  background-color: #e8f5e9;  /* Light green background on hover */
 }
 
 .card {
@@ -34,7 +34,7 @@
 .card-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #0056b3;  /* Dark blue color for the title */
+  color: #388e3c;  /* Dark green color for the title */
   margin-bottom: 10px;
 }
 
@@ -55,12 +55,12 @@
 
 /* Adding a touch of color to section labels */
 .card-text strong {
-  color: #007bff;  /* Blue color for labels like Date, Time, Location */
+  color: #4caf50;  /* Green color for labels like Date, Time, Location */
 }
 
 /* Add a light background color to the entire section */
 .card {
-  background-color: #f1f9ff;  /* Light blue background for the entire card */
+  background-color: #e8f5e9;  /* Light green background for the entire card */
 }
 
 /* Responsive design for small screens */
