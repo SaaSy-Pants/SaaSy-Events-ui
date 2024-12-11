@@ -1,0 +1,25 @@
+<div class="container">
+    <ul class="list-group">
+      <h2>Organizer Dashboard</h2>
+      <li
+        *ngFor="let event of eventList"
+        class="list-group-item"
+        (click)="viewEventAttendees(event.id)"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.Name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Category: {{ event.EventCategory }}</h6>
+            <p class="card-text">{{ event.EventDesc }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ event.Location }}</p>
+            <p class="card-text">
+              <strong>Date:</strong> {{ event.EventDate }}
+              <strong>Time:</strong> {{ event.EventTimeStart }} - {{ event.EventTimeEnd }}
+            </p>
+            <p class="card-text"><strong>Registered Attendees:</strong> {{ event.GuestsRem }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ event.Price }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>  

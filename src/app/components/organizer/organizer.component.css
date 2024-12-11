@@ -1,0 +1,86 @@
+/* Styles for the upcoming bookings list */
+.list-group {
+    margin: 20px auto;
+    padding: 0;
+    max-width: 800px;
+  }
+  
+  .list-group-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  /* Hover effect with slight color change */
+  .list-group-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f2f8ff;  /* Light blue background on hover */
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0056b3;  /* Dark blue color for the title */
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .card-text strong {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .card-text p {
+    margin-bottom: 10px;
+  }
+  
+  /* Adding a touch of color to section labels */
+  .card-text strong {
+    color: #007bff;  /* Blue color for labels like Date, Time, Location */
+  }
+  
+  /* Add a light background color to the entire section */
+  .card {
+    background-color: #f1f9ff;  /* Light blue background for the entire card */
+  }
+  
+  /* Responsive design for small screens */
+  @media (max-width: 600px) {
+    .list-group {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .list-group-item {
+      padding: 10px;
+    }
+  
+    .card-title {
+      font-size: 1.2rem;
+    }
+  
+    .card-text {
+      font-size: 0.9rem;
+    }
+  }
+  
