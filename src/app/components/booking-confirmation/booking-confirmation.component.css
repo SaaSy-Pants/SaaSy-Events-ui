@@ -1,0 +1,80 @@
+/* General styling */
+.confirmation-container {
+  text-align: center;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Ticket Details Section */
+.ticket-details {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-details h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.ticket-details p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Event Details Section */
+.event-details {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-details h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.event-details p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Barcode and QR Code Sections */
+.barcode, .qrcode {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.barcode img, .qrcode img {
+  width: 200px;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Loading Section */
+.loading {
+  font-size: 18px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* Styling for the main container */
+.confirmation-container .ticket-details,
+.confirmation-container .event-details {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.confirmation-container img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}

@@ -4,13 +4,14 @@ import {AddEventComponent} from "./components/add-event/add-event.component";
 import {EventDetailsComponent} from "./components/event-details/event-details.component";
 import {EventListComponent} from "./components/event-list/event-list.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
   imports: [
-    RouterOutlet, AddEventComponent, EventDetailsComponent, EventListComponent, NavbarComponent
+    RouterOutlet, AddEventComponent, EventDetailsComponent, EventListComponent, NavbarComponent, BookingConfirmationComponent
   ],
   styleUrl: './app.component.css'
 })

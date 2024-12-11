@@ -1,0 +1,29 @@
+<div *ngIf="ticketDetails && eventDetails; else loading">
+  <!-- Ticket Details -->
+  <div>
+    <h2>Ticket Information</h2>
+    <p><strong>Ticket ID:</strong> {{ ticketDetails.TID }}</p>
+    <p><strong>Number of Guests:</strong> {{ ticketDetails.NumGuests }}</p>
+  </div>
+
+  <!-- Event Details -->
+  <div>
+    <h2>Event Details</h2>
+    <p><strong>Event Name:</strong> {{ eventDetails.Name }}</p>
+    <p><strong>Category:</strong> {{ eventDetails.EventCategory }}</p>
+    <p><strong>Description:</strong> {{ eventDetails.EventDesc }}</p>
+    <p><strong>Location:</strong> {{ eventDetails.Location }}</p>
+    <p><strong>Event Date:</strong> {{ eventDetails.EventDate | date }}</p>
+    <p><strong>Start Time:</strong> {{ eventStartTime }}</p>
+    <p><strong>End Time:</strong> {{ eventEndTime }}</p>
+  </div>
+
+  <div *ngIf="qrcodeImageUrl">
+    <h3>QR Code</h3>
+    <img [src]="qrcodeImageUrl" alt="QR Code" />
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading ticket and event details...</p>
+</ng-template>
