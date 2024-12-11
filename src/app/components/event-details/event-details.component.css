@@ -1,0 +1,19 @@
+.ticket-selection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+.ticket-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
