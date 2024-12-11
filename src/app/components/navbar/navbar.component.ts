@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterLink, CommonModule
+    RouterLink, CommonModule, NgOptimizedImage
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  showUserOptions:boolean = false;
+  imageAddress='./assets/logo.png';
 
-  toggleUserOptions() {
-    this.showUserOptions = !this.showUserOptions;
+  logout() {
+    console.log('Logging out...');
   }
+
 }
