@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {CompositeService} from "../../services/composite.service";
 
@@ -14,7 +14,7 @@ export class EventDetailsComponent implements OnInit {
     event: any = null;
     ticketsToBuy = 1;
 
-    constructor(private route: ActivatedRoute, private compositeService: CompositeService) {}
+    constructor(private route: ActivatedRoute, private router: Router, private compositeService: CompositeService) {}
 
     ngOnInit() {
         const eventId = this.route.snapshot.paramMap.get('id');
@@ -54,12 +54,19 @@ export class EventDetailsComponent implements OnInit {
 
   bookNow() {
     const ticket = {
-      eventId: this.event.id,
-      tickets: this.ticketsToBuy,
-      totalPrice: this.ticketsToBuy * this.event.price,
+      uid: 'U001', // TODO: update later
+      eid: this.event.id,
+      num_guests: this.ticketsToBuy,
     };
 
-    console.log('Ticket created:', ticket);
-    // alert('Tickets successfully booked!');
+    this.compositeService.purchaseTicket(ticket).subscribe({
+      next: (response) => {
+        console.log('Ticket purchase successful:', response);
+        alert('Booking confirmed');
+      },
+      error: (err) => {
+        console.error('Error purchasing ticket:', err);
+      },
+    });
   }
 }
