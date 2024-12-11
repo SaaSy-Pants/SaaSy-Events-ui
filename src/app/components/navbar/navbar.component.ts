@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 
@@ -11,9 +11,20 @@ import {CommonModule, NgOptimizedImage} from "@angular/common";
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  showLogout: boolean = true;
+  showProfile: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      this.showLogout = this.router.url !== '/login' && this.router.url !== '/signup';
+    });
+
+    this.router.events.subscribe(() => {
+      this.showProfile = this.router.url !== '/profile';
+    });
   }
 
   logout() {
@@ -21,4 +32,7 @@ export class NavbarComponent {
     this.router.navigate(['/login']).then(() => {});
   }
 
+  profile() {
+    this.router.navigate(['/profile']).then(() => {})
+  }
 }

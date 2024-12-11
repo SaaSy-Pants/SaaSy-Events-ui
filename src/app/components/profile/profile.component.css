@@ -1,0 +1,57 @@
+/* Container to center the profile card */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff; /* Light purple background */
+  padding: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #6a1b9a; /* Dark purple header */
+  color: white;
+}
+
+.profile-header h2 {
+  margin: 10px 0 0 0;
+}
+
+/* Profile Picture */
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f3e5f5; /* Border matches the background */
+}
+
+/* Profile Body */
+.profile-body {
+  padding: 20px;
+}
+
+.profile-body p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.profile-body p strong {
+  color: #6a1b9a; /* Matches the header's purple color */
+}

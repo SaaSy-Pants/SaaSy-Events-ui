@@ -7,6 +7,7 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {OrganizerComponent} from "./components/organizer/organizer.component";
 import { AttendeesComponent } from "./components/attendees/attendees.component";
 import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
+import {ProfileComponent} from "./components/profile/profile.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'attendees/:id', component: AttendeesComponent },
   { path: 'events/:id', component: EventDetailsComponent},
   { path: 'add', component: AddEventComponent },
-  { path: 'booking-confirmation/:ticketId', component: BookingConfirmationComponent }
+  { path: 'booking-confirmation/:ticketId', component: BookingConfirmationComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
