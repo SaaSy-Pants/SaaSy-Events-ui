@@ -10,7 +10,6 @@ export class CompositeService {
   private baseTicketsUrl = 'http://localhost:8002';
   private baseUsersUrl = 'http://localhost:8000';
   private qrcodeUrl = 'https://api.qrserver.com/v1/create-qr-code'; // 3rd party api/service for QR Code
-  private ticketdetailsUrl = ' http://localhost:4200/booking-confirmation';
 
   constructor(private http: HttpClient) {}
 
@@ -61,6 +60,6 @@ export class CompositeService {
   }
 
   getQrcode(ticketId: string): Observable<Blob> {
-    return this.http.get(`${this.qrcodeUrl}/?data=${this.ticketdetailsUrl + "/" + ticketId}`, {responseType: 'blob'});
+    return this.http.get(`${this.qrcodeUrl}/?data=${ticketId}`, {responseType: 'blob'});
   }
 }

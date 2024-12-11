@@ -68,7 +68,7 @@ export class EventDetailsComponent implements OnInit {
 
   bookNow() {
     const ticket = {
-      uid: 'U001', // TODO: update later
+      uid: localStorage.getItem('user_id'),
       eid: this.event.id,
       num_guests: this.ticketsToBuy,
     };
@@ -76,10 +76,11 @@ export class EventDetailsComponent implements OnInit {
     this.compositeService.purchaseTicket(ticket).subscribe({
       next: (response) => {
         console.log('Ticket purchase successful:', response);
-        alert('Booking confirmed');
+        this.router.navigate([`/booking-confirmation`, response['TID']]).then(() => {})
       },
       error: (err) => {
         console.error('Error purchasing ticket:', err);
+        alert('Error purchasing ticket !!');
       },
     });
   }
