@@ -1,0 +1,15 @@
+<div class="container">
+    <ul class="list-group">
+      <h2>Event Attendees</h2>
+      <li *ngFor="let attendee of attendees" class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ attendee.name }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ attendee.email }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ attendee.phone }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
