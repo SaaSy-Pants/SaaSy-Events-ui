@@ -1,26 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EventService } from '../../services/event.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css'],
   standalone: true,
+  imports: [CommonModule],
 })
 export class EventDetailsComponent {
-  event = {
-    id: 1,
-    name: 'Music Fest 2024',
-    category: 'Concert',
-    description: 'Experience the best music performances by top artists.',
-    location: 'Central Park, New York',
-    date: '2024-12-20',
-    timeStart: '18:00',
-    timeEnd: '23:00',
-    ticketsAvailable: 100,
-    price: 50,
-};
+    event: any = null;
+    ticketsToBuy = 1;
 
-  ticketsToBuy = 1;
+    constructor(private route: ActivatedRoute, private eventService: EventService) {}
+
+    ngOnInit() {
+        const eventId = this.route.snapshot.paramMap.get('id');
+        if (eventId) {
+            this.eventService.getEventById(eventId).subscribe({
+              next: (data) => {
+                // Map the API response to the expected fields
+                this.event = {
+                  id: data.EID,
+                  name: data.Name,
+                  category: data.EventCategory,
+                  description: data.EventDesc,
+                  location: data.Location,
+                  date: data.EventDate,
+                  timeStart: data.EventTimeStart,
+                  timeEnd: data.EventTimeEnd,
+                  ticketsAvailable: data.GuestsRem,
+                  price: data.Price,
+                };
+              },
+              error: (err) => console.error('Error fetching event details:', err),
+            });
+        }
+    }
 
   increaseTickets() {
     if (this.ticketsToBuy < this.event.ticketsAvailable) {

@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" *ngIf="event">
     <h1>{{ event.name }}</h1>
     <p><strong>Category:</strong> {{ event.category }}</p>
     <p><strong>Description:</strong> {{ event.description }}</p>
     <p><strong>Location:</strong> {{ event.location }}</p>
-    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Date:</strong> {{ event.date | date }}</p>
     <p><strong>Time:</strong> {{ event.timeStart }} - {{ event.timeEnd }}</p>
     <p><strong>Tickets Available:</strong> {{ event.ticketsAvailable }}</p>
     <p><strong>Price per Ticket:</strong> ${{ event.price }}</p>
@@ -15,4 +15,6 @@
     </div>
   
     <button (click)="bookNow()" class="btn btn-primary">Book Now</button>
+    <div *ngIf="!event">
+        <p>Loading event details...</p>
 </div>
