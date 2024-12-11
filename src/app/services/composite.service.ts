@@ -46,6 +46,6 @@ export class CompositeService {
   }
 
   purchaseTicket(ticket: any): Observable<any> {
-    return this.http.post<any>(`${this.baseTicketsUrl}/tickets`, ticket);
+    return this.http.post<any>(`${this.baseTicketsUrl}/ticket`, ticket);
   }
 }
