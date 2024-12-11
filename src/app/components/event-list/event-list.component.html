@@ -1,4 +1,4 @@
-<h2>Event List</h2>
+<h2>Events</h2>
 <ul class="list-group">
   <li *ngFor="let event of eventList" class="list-group-item">
     <div class="card">
@@ -9,7 +9,7 @@
         <p class="card-text"><strong>Location:</strong> {{ event.Location }}</p>
         <p class="card-text">
           <strong>Date:</strong> {{ event.EventDate | date }}
-          <strong>Time:</strong> {{ event.EventTimeStart }} - {{ event.EventTimeEnd }}
+          <strong>Time:</strong> {{ event.EventTimeStart | timeFormat }} - {{ event.EventTimeEnd | timeFormat }}
         </p>
         <p class="card-text"><strong>Remaining Guests:</strong> {{ event.GuestsRem }}</p>
         <p class="card-text"><strong>Max Guests per Ticket:</strong> {{ event.MaxGuestsPerTicket }}</p>

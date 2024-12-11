@@ -1,18 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; background-color: #6a1b9a;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">SaaS-y Events</a>
+    <!-- Logo and Title -->
+    <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 1.5rem;">
+      <img
+        src="https://avatars.githubusercontent.com/u/183328571?s=400&u=c9b3e82e05ac96fff18f0b62328d315514426582&v=4"
+        alt="Logo" style="height: 40px; margin-right: 10px;" fill/>
+      SaaS-y Events
+    </a>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <!-- Logout Button -->
         <li class="nav-item">
-          <span class="pi pi-user nav-link" (click)="toggleUserOptions()" style="cursor: pointer;"></span>
+          <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
         </li>
       </ul>
     </div>
-  </div>
-
-  <!-- Dropdown for login and signup -->
-  <div *ngIf="showUserOptions" class="dropdown-menu dropdown-menu-end">
-    <a class="dropdown-item" routerLink="/login">Login</a>
-    <a class="dropdown-item" routerLink="/signup">Sign Up</a>
   </div>
 </nav>

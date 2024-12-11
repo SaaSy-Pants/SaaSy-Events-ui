@@ -1,15 +1,19 @@
 <h2>Upcoming Bookings</h2>
-  <ul class="list-group">
-    <div class="card" style="width: 40rem;">
+<ul class="list-group">
+  <li *ngFor="let event of bookingList" class="list-group-item">
+    <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Upcoming Event1 </h5>
-        <h6 class="card-subtitle mb-2 text-muted">Location</h6>
-        <p class="card-text">Have fun at event </p>
+        <h5 class="card-title">{{ event.Name }}</h5>
+        <p class="card-text">
+          <strong>Date:</strong> {{ event.EventDate | date }}
+        </p>
+        <p class="card-text">
+          <strong>Time:</strong> {{ event.EventTimeStart | durationToTime }} - {{ event.EventTimeEnd | durationToTime }}
+        </p>
+        <p class="card-text">
+          <strong>Location:</strong> {{ event.Location }}
+        </p>
       </div>
     </div>
-    <!--<li *ngFor="let booking of upcomingBookings" class="list-group-item">
-      <p>{{ booking.name }}</p>
-      <small>{{ booking.date }}</small>
-    </li>-->
-  </ul>
-
+  </li>
+</ul>

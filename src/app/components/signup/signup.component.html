@@ -1,24 +1,10 @@
 <div class="flex justify-content-center align-items-center min-h-screen">
-  <p-card header="Sign Up" [style]="{ width: '400px'}">
-  <form (ngSubmit)="onSignup()" #signupForm="ngForm">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" ngModel class="form-control" required />
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" ngModel class="form-control" required />
-    </div>
+  <p-card header="Please fill in some additional info :)" [style]="{ width: '400px'}">
+  <form (ngSubmit)="onSignup(signupForm)" #signupForm="ngForm">
 
     <div class="form-group">
       <label for="phoneNo">Phone Number</label>
       <input type="text" id="phoneNo" name="phoneNo" ngModel class="form-control" required />
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password"  name="password" ngModel class="form-control" required />
     </div>
 
     <div class="form-group">
@@ -32,9 +18,6 @@
     </div>
 
     <button pButton type="submit" label="Sign Up" icon="pi pi-user-plus" [disabled]="!signupForm.valid"></button>
-    <div class="mt-4 text-center">
-      <p>Already have an account? <a href="/login" class="text-blue-600">Login</a></p>
-    </div>
   </form>
 </p-card>
 </div>
