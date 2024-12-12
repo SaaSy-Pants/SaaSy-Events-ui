@@ -14,16 +14,15 @@ import {CommonModule, NgOptimizedImage} from "@angular/common";
 export class NavbarComponent implements OnInit {
   showLogout: boolean = true;
   showProfile: boolean = true;
+  showCreateAnEvent: boolean = true;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
       this.showLogout = this.router.url !== '/login' && this.router.url !== '/signup';
-    });
-
-    this.router.events.subscribe(() => {
-      this.showProfile = this.router.url !== '/profile';
+      this.showProfile = !this.router.url.startsWith('/profile');
+      this.showCreateAnEvent = this.router.url == '/add';
     });
   }
 
@@ -34,5 +33,11 @@ export class NavbarComponent implements OnInit {
 
   profile() {
     this.router.navigate(['/profile', localStorage.getItem('profile')]).then(() => {})
+  }
+
+  protected readonly localStorage = localStorage;
+
+  createEvent() {
+    this.router.navigate(['/add']).then(() => {})
   }
 }

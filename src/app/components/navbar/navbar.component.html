@@ -10,6 +10,8 @@
 
     <!-- Buttons aligned to the right -->
     <div class="d-flex ms-auto">
+      <!-- Create Event Button -->
+      <button class="btn btn-outline-danger" style="margin-right: 10px;" (click)="createEvent()" *ngIf="showLogout && showProfile && localStorage.getItem('profile') == 'organiser'">Create an Event </button>
       <!-- Profile Button -->
       <button class="btn btn-outline-danger" style="margin-right: 10px;" (click)="profile()" *ngIf="showLogout && showProfile">Profile</button>
       <!-- Logout Button -->

@@ -61,6 +61,12 @@ export class CompositeService {
     return this.http.post<any>(`${this.baseEventsUrl}/events`, event);
   }
 
+  updateGuests(eid: string, guest: number): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.patch<any>(`${this.baseEventsUrl}/events/${eid}/${guest}`, { headers });
+  }
+
   purchaseTicket(ticket: any): Observable<any> {
     return this.http.post<any>(`${this.baseTicketsUrl}/ticket`, ticket);
   }

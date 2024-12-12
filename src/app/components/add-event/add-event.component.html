@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Add New Event</h1>
-  <form>
+  <form [formGroup]="eventForm" (ngSubmit)="onCreate()">
     <div class="form-group">
       <label for="Name">Event Name</label>
       <input id="Name" formControlName="Name" class="form-control" required />
@@ -30,6 +30,10 @@
       <input type="time" id="EventTimeEnd" formControlName="EventTimeEnd" class="form-control" required />
     </div>
     <div class="form-group">
+      <label for="MaxGuestsPerTicket">Max Guests Per Ticket</label>
+      <input type="number" id="MaxGuestsPerTicket" formControlName="MaxGuestsPerTicket" class="form-control" required />
+    </div>
+    <div class="form-group">
       <label for="TicketsAvb">Tickets Available</label>
       <input type="number" id="TicketsAvb" formControlName="TicketsAvb" class="form-control" required />
     </div>
@@ -37,8 +41,6 @@
       <label for="Price">Price</label>
       <input type="number" id="Price" formControlName="Price" class="form-control" required />
     </div>
-    <button type="submit" class="btn btn-success">Add Event</button>
+    <button pButton type="submit" label="Create Event" icon="pi pi-plus" [disabled]="!eventForm.valid"></button>
   </form>
 </div>
-
-

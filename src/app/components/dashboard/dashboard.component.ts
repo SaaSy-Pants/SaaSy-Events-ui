@@ -67,6 +67,9 @@ export class DashboardComponent implements OnInit{
           }
         });
       }
+      else {
+        this.isProfileLoaded = true
+      }
     });
   }
 

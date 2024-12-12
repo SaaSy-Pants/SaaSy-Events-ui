@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DatePipe, NgForOf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {CompositeService} from "../../services/composite.service";
 import {firstValueFrom} from "rxjs";
 import {DurationToTimePipe} from "../utils/duration-to-time-pipe";
@@ -12,7 +12,8 @@ import {Router} from "@angular/router";
   imports: [
     DatePipe,
     DurationToTimePipe,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   styleUrl: './upcoming-bookings.component.css'
 })

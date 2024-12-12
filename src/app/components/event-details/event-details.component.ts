@@ -75,8 +75,12 @@ export class EventDetailsComponent implements OnInit {
 
     this.compositeService.purchaseTicket(ticket).subscribe({
       next: (response) => {
-        console.log('Ticket purchase successful:', response);
-        this.router.navigate([`/booking-confirmation`, response['TID']]).then(() => {})
+        this.compositeService.updateGuests(this.event.id, this.event.ticketsAvailable - this.ticketsToBuy).subscribe({
+          next: () => {
+            console.log('Ticket purchase successful:', response);
+            this.router.navigate([`/booking-confirmation`, response['TID']]).then(() => {})
+          }
+        });
       },
       error: (err) => {
         console.error('Error purchasing ticket:', err);

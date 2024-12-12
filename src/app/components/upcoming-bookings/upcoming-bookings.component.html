@@ -1,19 +1,24 @@
 <h2>Upcoming Bookings</h2>
-<ul class="list-group">
-  <li *ngFor="let event of bookingList" class="list-group-item">
-    <div class="card" (click)="navigateToEvent(event.TID)">
-      <div class="card-body">
-        <h5 class="card-title">{{ event.Name }}</h5>
-        <p class="card-text">
-          <strong>Date:</strong> {{ event.EventDate | date }}
-        </p>
-        <p class="card-text">
-          <strong>Time:</strong> {{ event.EventTimeStart | durationToTime }} - {{ event.EventTimeEnd | durationToTime }}
-        </p>
-        <p class="card-text">
-          <strong>Location:</strong> {{ event.Location }}
-        </p>
+<ng-container *ngIf="bookingList && bookingList.length > 0; else noBookings">
+  <ul class="list-group">
+    <li *ngFor="let event of bookingList" class="list-group-item">
+      <div class="card" (click)="navigateToEvent(event.TID)">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.Name }}</h5>
+          <p class="card-text">
+            <strong>Date:</strong> {{ event.EventDate | date }}
+          </p>
+          <p class="card-text">
+            <strong>Time:</strong> {{ event.EventTimeStart | durationToTime }} - {{ event.EventTimeEnd | durationToTime }}
+          </p>
+          <p class="card-text">
+            <strong>Location:</strong> {{ event.Location }}
+          </p>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</ng-container>
+<ng-template #noBookings>
+  <p class="alert alert-info">You don't have any upcoming bookings. Why not explore some events and book one?</p>
+</ng-template>

@@ -1,6 +1,7 @@
 <div class="container">
+  <h2>Organiser Dashboard</h2>
+  <ng-container *ngIf="eventList && eventList.length > 0; else noEvents">
     <ul class="list-group">
-      <h2>Organiser Dashboard</h2>
       <li
         *ngFor="let event of eventList"
         class="list-group-item"
@@ -23,4 +24,8 @@
         </div>
       </li>
     </ul>
-  </div>
+  </ng-container>
+  <ng-template #noEvents>
+    <p class="alert alert-info">You haven't created any events yet. Start organizing your first event!</p>
+  </ng-template>
+</div>
