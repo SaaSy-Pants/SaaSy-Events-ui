@@ -1,7 +1,7 @@
 <h2>Events</h2>
 <ul class="list-group">
   <li *ngFor="let event of eventList" class="list-group-item">
-    <div class="card">
+    <div class="card" (click)="navigateToEvent(event.EID)">
       <div class="card-body">
         <h5 class="card-title">{{ event.Name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Category: {{ event.EventCategory }}</h6>

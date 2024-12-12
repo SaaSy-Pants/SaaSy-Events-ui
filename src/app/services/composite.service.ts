@@ -10,7 +10,6 @@ export class CompositeService {
   private baseTicketsUrl = 'http://localhost:8002';
   private baseUsersUrl = 'http://localhost:8000';
   private qrcodeUrl = 'https://api.qrserver.com/v1/create-qr-code'; // 3rd party api/service for QR Code
-  private ticketdetailsUrl = ' http://localhost:4200/booking-confirmation';
 
   constructor(private http: HttpClient) {}
 
@@ -26,24 +25,46 @@ export class CompositeService {
     return this.http.get<any>(`${this.baseEventsUrl}/events/${id}`);
   }
 
+  getEventsForOrganiser(orgId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseEventsUrl}/events/organizer/${orgId}`);
+  }
+
   getLoginUrl(type: string) {
     return `${this.baseUsersUrl}/login?profile=${type}`;
   }
 
-  getProfile(): Observable<any> {
+  getProfile(role: string): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get(`${this.baseUsersUrl}/user`, { headers });
+    return this.http.get(`${this.baseUsersUrl}/${role}`, { headers });
   }
 
-  createProfile(profileData: any): Observable<any> {
+  getProfileById(role: string, id: string): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.post(`${this.baseUsersUrl}/user`, profileData, { headers });
+    return this.http.get(`${this.baseUsersUrl}/${role}/${id}`, { headers });
+  }
+
+  createProfile(profileData: any, role: string): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.post(`${this.baseUsersUrl}/${role}`, profileData, { headers });
+  }
+
+  getAttendees(eid: string): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.baseTicketsUrl}/ticket/event/${eid}/users`, { headers });
   }
 
   addEvent(event: any): Observable<any> {
     return this.http.post<any>(`${this.baseEventsUrl}/events`, event);
+  }
+
+  updateGuests(eid: string, guest: number): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.patch<any>(`${this.baseEventsUrl}/events/${eid}/${guest}`, { headers });
   }
 
   purchaseTicket(ticket: any): Observable<any> {
@@ -55,6 +76,6 @@ export class CompositeService {
   }
 
   getQrcode(ticketId: string): Observable<Blob> {
-    return this.http.get(`${this.qrcodeUrl}/?data=${this.ticketdetailsUrl + "/" + ticketId}`, {responseType: 'blob'});
+    return this.http.get(`${this.qrcodeUrl}/?data=${ticketId}`, {responseType: 'blob'});
   }
 }

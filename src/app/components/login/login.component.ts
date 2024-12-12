@@ -31,7 +31,7 @@ export class LoginComponent {
     this.role = role
   }
 
-  signInWithGoogle() {
-    window.location.href = this.compositeService.getLoginUrl(this.role);
+  signInWithGoogle(role: string) {
+    window.location.href = this.compositeService.getLoginUrl(role);
   }
 }

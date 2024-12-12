@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
 import {ButtonDirective} from "primeng/button";
 import {CardModule} from "primeng/card";
 import {TabViewModule} from "primeng/tabview";
 import {CompositeService} from "../../services/composite.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -20,9 +20,17 @@ import {Router} from "@angular/router";
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
-  constructor(private compositeService: CompositeService, private router: Router) {}
+  profile = 'user';
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.profile = params['role'];
+    });
+  }
+
+  constructor(private compositeService: CompositeService, private router: Router, private route: ActivatedRoute) {}
 
   onSignup(signupForm: any): void {
     if (signupForm.valid) {
@@ -32,10 +40,13 @@ export class SignupComponent {
       const age = formValues.age;
 
       this.compositeService.createProfile(
-        {'PhoneNo': phoneNo, 'Address': address, 'Age': age}
+        {'PhoneNo': phoneNo, 'Address': address, 'Age': age}, this.profile
       ).subscribe(user => {
-        localStorage.setItem('user_id', user.UID)
-        this.router.navigate(['/dashboard']).then(() => {});
+        if (this.profile == 'user')
+          localStorage.setItem('user_id', user.UID)
+        else
+          localStorage.setItem('user_id', user.OID)
+        this.router.navigate(['/dashboard', this.profile]).then(() => {});
       })
     }
   }

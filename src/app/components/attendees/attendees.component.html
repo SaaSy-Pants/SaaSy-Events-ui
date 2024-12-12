@@ -1,15 +1,20 @@
 <div class="container">
+  <h2>Event Attendees</h2>
+  <ng-container *ngIf="attendees && attendees.length > 0; else noAttendees">
     <ul class="list-group">
-      <h2>Event Attendees</h2>
       <li *ngFor="let attendee of attendees" class="list-group-item">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{ attendee.name }}</h5>
-            <p class="card-text"><strong>Email:</strong> {{ attendee.email }}</p>
-            <p class="card-text"><strong>Phone:</strong> {{ attendee.phone }}</p>
+            <h5 class="card-title">{{ attendee.Name }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ attendee.Email }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ attendee.PhoneNo }}</p>
+            <p class="card-text"><strong>Number of Guests:</strong> {{ attendee.NumGuests }}</p>
           </div>
         </div>
       </li>
     </ul>
-  </div>
-  
+  </ng-container>
+  <ng-template #noAttendees>
+    <p class="alert alert-info">No attendees have registered for this event yet.</p>
+  </ng-template>
+</div>

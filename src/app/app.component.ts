@@ -5,13 +5,15 @@ import {EventDetailsComponent} from "./components/event-details/event-details.co
 import {EventListComponent} from "./components/event-list/event-list.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
+import {ProfileComponent} from "./components/profile/profile.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
   imports: [
-    RouterOutlet, AddEventComponent, EventDetailsComponent, EventListComponent, NavbarComponent, BookingConfirmationComponent
+    RouterOutlet, AddEventComponent, EventDetailsComponent, EventListComponent, NavbarComponent, BookingConfirmationComponent,
+    ProfileComponent
   ],
   styleUrl: './app.component.css'
 })

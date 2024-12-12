@@ -4,17 +4,24 @@
     <p><strong>Description:</strong> {{ event.description }}</p>
     <p><strong>Location:</strong> {{ event.location }}</p>
     <p><strong>Date:</strong> {{ event.date | date }}</p>
-    <p><strong>Time:</strong> {{ event.timeStart }} - {{ event.timeEnd }}</p>
+    <p><strong>Time:</strong> {{ event.timeStart | durationToTime }} - {{ event.timeEnd | durationToTime }}</p>
     <p><strong>Tickets Available:</strong> {{ event.ticketsAvailable }}</p>
+    <p><strong>Max Guests Per Ticket:</strong> {{ event.maxGuestsPerTicket }}</p>
     <p><strong>Price per Ticket:</strong> ${{ event.price }}</p>
-  
+
+    <h3>Organiser Details</h3>
+    <p><strong>Name:</strong> {{ organiser.name }}</p>
+    <p><strong>Email:</strong> {{ organiser.email }}</p>
+    <p><strong>Phone Number:</strong> {{ organiser.phone }}</p>
+
     <div class="ticket-selection">
       <button (click)="decreaseTickets()" class="btn btn-secondary">-</button>
       <span class="ticket-count">{{ ticketsToBuy }}</span>
       <button (click)="increaseTickets()" class="btn btn-secondary">+</button>
     </div>
-  
+
     <button (click)="bookNow()" class="btn btn-primary">Book Now</button>
     <div *ngIf="!event">
         <p>Loading event details...</p>
+    </div>
 </div>

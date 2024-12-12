@@ -1,0 +1,18 @@
+<div class="profile-container">
+  <div class="profile-card" *ngIf="user">
+    <div class="profile-header">
+      <img
+        src={{user.Pic_URL}}
+        alt="Profile Picture"
+        class="profile-picture"
+      />
+      <h2>{{ user.Name }}</h2>
+    </div>
+    <div class="profile-body">
+      <p><strong>Email:</strong> {{ user.Email }}</p>
+      <p><strong>Address:</strong> {{ user.Address }}</p>
+      <p><strong>Age:</strong> {{ user.Age }}</p>
+      <p><strong>Phone:</strong> {{ user.PhoneNo }}</p>
+    </div>
+  </div>
+</div>

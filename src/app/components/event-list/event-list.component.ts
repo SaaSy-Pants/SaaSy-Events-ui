@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {CurrencyPipe, DatePipe, NgForOf} from "@angular/common";
 import {CompositeService} from "../../services/composite.service";
 import {TimeFormatPipe} from "../utils/time-format-pipe";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-event-list',
@@ -19,10 +20,14 @@ import {TimeFormatPipe} from "../utils/time-format-pipe";
 export class EventListComponent implements OnInit {
   eventList: any[] = [];
 
-  constructor(private compositeService: CompositeService) {}
+  constructor(private compositeService: CompositeService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadEvents();
+  }
+
+  navigateToEvent(eventId: number): void {
+    this.router.navigate([`/events`, eventId]).then(() => {});
   }
 
   loadEvents(): void {
