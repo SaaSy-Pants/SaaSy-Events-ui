@@ -4,7 +4,6 @@ import {AddEventComponent} from "./components/add-event/add-event.component";
 import {LoginComponent} from "./components/login/login.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
-import {OrganizerComponent} from "./components/organizer/organizer.component";
 import { AttendeesComponent } from "./components/attendees/attendees.component";
 import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
 import {ProfileComponent} from "./components/profile/profile.component";
@@ -12,12 +11,11 @@ import {ProfileComponent} from "./components/profile/profile.component";
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'organizer', component: OrganizerComponent },
-  { path: 'attendees/:id', component: AttendeesComponent },
+  { path: 'signup/:role', component: SignupComponent },
+  { path: 'dashboard/:role', component: DashboardComponent },
+  { path: 'attendees/:eventId', component: AttendeesComponent },
   { path: 'events/:id', component: EventDetailsComponent},
   { path: 'add', component: AddEventComponent },
   { path: 'booking-confirmation/:ticketId', component: BookingConfirmationComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile/:role', component: ProfileComponent }
 ];

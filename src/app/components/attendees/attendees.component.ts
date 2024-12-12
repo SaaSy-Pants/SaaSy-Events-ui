@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {CompositeService} from "../../services/composite.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-attendees',
@@ -10,17 +12,33 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class AttendeesComponent implements OnInit {
-  attendees = [
-    { name: 'John Doe', email: 'john.doe@example.com', phone: '123-456-7890' },
-    { name: 'Jane Smith', email: 'jane.smith@example.com', phone: '987-654-3210' },
-    { name: 'Robert Brown', email: 'robertbrown@example.com', phone: '112-233-4455' }
-  ];
+  attendees: any[] = []
 
-  eventId: number | null = null;
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private compositeService: CompositeService) {}
 
   ngOnInit(): void {
-    this.eventId = +this.route.snapshot.paramMap.get('id')!;
+    this.route.params.subscribe(params => {
+      this.compositeService.getAttendees(params['eventId']).subscribe({
+        next: (attendees) => {
+          const attendeeRequest = attendees['uids'].map(async (attendee: { UID: string; }) =>  {
+            const attendeeObject = await firstValueFrom(this.compositeService.getProfileById('user', attendee['UID']));
+            return attendeeObject['details']
+          });
+
+          Promise.all(attendeeRequest)
+              .then(attendeeDetails => {
+                this.attendees = attendeeDetails.sort((a, b) => {
+                  return a.Name - b.Name;
+                });
+              })
+              .catch(err => {
+                console.error('Error fetching event details:', err);
+              });
+        },
+        error: (err) => {
+          console.error('Error fetching events:', err);
+        },
+      })
+    });
   }
 }

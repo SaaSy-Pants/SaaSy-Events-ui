@@ -25,6 +25,10 @@ export class CompositeService {
     return this.http.get<any>(`${this.baseEventsUrl}/events/${id}`);
   }
 
+  getEventsForOrganiser(orgId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseEventsUrl}/events/organizer/${orgId}`);
+  }
+
   getLoginUrl(type: string) {
     return `${this.baseUsersUrl}/login?profile=${type}`;
   }
@@ -41,10 +45,16 @@ export class CompositeService {
     return this.http.get(`${this.baseUsersUrl}/${role}/${id}`, { headers });
   }
 
-  createProfile(profileData: any): Observable<any> {
+  createProfile(profileData: any, role: string): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.post(`${this.baseUsersUrl}/user`, profileData, { headers });
+    return this.http.post(`${this.baseUsersUrl}/${role}`, profileData, { headers });
+  }
+
+  getAttendees(eid: string): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.baseTicketsUrl}/ticket/event/${eid}/users`, { headers });
   }
 
   addEvent(event: any): Observable<any> {

@@ -33,6 +33,6 @@ export class NavbarComponent implements OnInit {
   }
 
   profile() {
-    this.router.navigate(['/profile']).then(() => {})
+    this.router.navigate(['/profile', localStorage.getItem('profile')]).then(() => {})
   }
 }

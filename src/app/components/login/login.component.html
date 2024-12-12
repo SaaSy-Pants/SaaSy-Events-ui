@@ -4,17 +4,17 @@
       <p-tabPanel header="User Login" (select)="onRoleChange('user')">
         <div class="m-0" [style]="{ width: '400px' }">
           <!-- Custom Google Sign-In Button -->
-          <button class="btn btn-google w-100" (click)="signInWithGoogle()">
+          <button class="btn btn-google w-100" (click)="signInWithGoogle('user')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1920px-Google_%22G%22_logo.svg.png" alt="Google Logo" class="google-logo"/>
             Sign in with Google
           </button>
         </div>
       </p-tabPanel>
 
-      <p-tabPanel header="Organiser Login" (select)="onRoleChange('organizer')">
+      <p-tabPanel header="Organiser Login" (select)="onRoleChange('organiser')">
         <div class="m-0" [style]="{ width: '400px' }">
           <!-- Custom Google Sign-In Button -->
-          <button class="btn btn-google w-100" (click)="signInWithGoogle()">
+          <button class="btn btn-google w-100" (click)="signInWithGoogle('organiser')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1920px-Google_%22G%22_logo.svg.png" alt="Google Logo" class="google-logo"/>
             Sign in with Google
           </button>

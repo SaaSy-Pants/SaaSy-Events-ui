@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CompositeService} from "../../services/composite.service";
 import {NgIf, NgOptimizedImage} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -15,17 +16,18 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
 export class ProfileComponent implements OnInit {
   user: any = null;
 
-  constructor(private compositeService: CompositeService) {}
+  constructor(private compositeService: CompositeService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.compositeService.getProfile('user').subscribe({
-      next: (profile) => {
-        console.log(profile)
-        this.user = profile['details'];
-      },
-      error: (err) => {
-        console.error('Error fetching events:', err);
-      },
-    })
+    this.route.params.subscribe(params => {
+      this.compositeService.getProfile(params['role']).subscribe({
+        next: (profile) => {
+          this.user = profile['details'];
+        },
+        error: (err) => {
+          console.error('Error fetching events:', err);
+        },
+      })
+    });
   }
 }

@@ -1,57 +1,42 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {CompositeService} from "../../services/composite.service";
+import {TimeFormatPipe} from "../utils/time-format-pipe";
 
 @Component({
   selector: 'app-organizer',
   templateUrl: './organizer.component.html',
   styleUrls: ['./organizer.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TimeFormatPipe],
 })
-export class OrganizerComponent {
-  eventList = [
-    {
-      id: 1,
-      Name: 'Art Exhibition',
-      EventCategory: 'Art',
-      EventDesc: 'A showcase of contemporary art by local and international artists.',
-      Location: 'Art Gallery, City',
-      EventDate: '2024-07-10',
-      EventTimeStart: '10:00',
-      EventTimeEnd: '18:00',
-      GuestsRem: 350,
-      Price: 50
-    },
-    {
-      id: 2,
-      Name: 'Music Festival',
-      EventCategory: 'Music',
-      EventDesc: 'An outdoor festival featuring various music bands and artists.',
-      Location: 'Central Park, City',
-      EventDate: '2024-06-20',
-      EventTimeStart: '12:00',
-      EventTimeEnd: '23:00',
-      GuestsRem: 495,
-      Price: 80
-    },
-    {
-      id: 3,
-      Name: 'Tech Conference 2024',
-      EventCategory: 'Technology',
-      EventDesc: 'A conference for professionals to discuss the latest in technology.',
-      Location: 'Convention Center, City',
-      EventDate: '2024-05-15',
-      EventTimeStart: '09:00',
-      EventTimeEnd: '17:00',
-      GuestsRem: 197,
-      Price: 150
+export class OrganizerComponent implements OnInit {
+  eventList: any[] = [];
+
+  constructor(private compositeService: CompositeService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  viewEventAttendees(eventId: number): void {
+    this.router.navigate([`/attendees`, eventId]).then(() => {});
+  }
+
+  loadEvents(): void {
+    let orgId = localStorage.getItem('user_id');
+    if (orgId != null){
+      this.compositeService.getEventsForOrganiser(orgId).subscribe({
+        next: (events) => {
+          if (events && events['events']){
+            this.eventList = events['events']
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching events:', err);
+        },
+      });
     }
-  ];
-
-  constructor(private router: Router) {}
-
-  viewEventAttendees(eventId: number) {
-    this.router.navigate(['/attendees', eventId]);
   }
 }

@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CompositeService} from "../../services/composite.service";
 import {catchError, of} from "rxjs";
 import {NgIf} from "@angular/common";
+import {OrganizerComponent} from "../organizer/organizer.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,16 +14,23 @@ import {NgIf} from "@angular/common";
     EventListComponent,
     UpcomingBookingsComponent,
     NgIf,
+    OrganizerComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit{
   isProfileLoaded = false;
+  profile = 'user'
 
   constructor(private route: ActivatedRoute, private compositeService: CompositeService, private router: Router) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.profile = params['role'];
+      localStorage.setItem('profile', this.profile);
+    });
+
     this.route.fragment.subscribe(fragment => {
       const params: any = {};
       let refreshToken;
@@ -42,16 +50,19 @@ export class DashboardComponent implements OnInit{
           this.storeTokens(accessToken, refreshToken);
         }
 
-        this.compositeService.getProfile('user').pipe(
+        this.compositeService.getProfile(this.profile).pipe(
           catchError((error) => {
             if (error.status === 404) {
-              this.router.navigate(['/signup']).then(_ => {})
+              this.router.navigate(['/signup', this.profile]).then(_ => {})
             }
             return of(null);
           })
         ).subscribe(profile => {
           if (profile) {
-            localStorage.setItem("user_id", profile['details']['UID']);
+            if (this.profile == 'user')
+              localStorage.setItem("user_id", profile['details']['UID']);
+            else
+              localStorage.setItem("user_id", profile['details']['OID']);
             this.isProfileLoaded = true;
           }
         });
