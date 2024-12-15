@@ -6,77 +6,70 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CompositeService {
-  private baseEventsUrl = 'http://localhost:8001';
-  private baseTicketsUrl = 'http://localhost:8002';
-  private baseUsersUrl = 'http://localhost:8000';
+  private baseCompositeUrl = 'http://localhost:8003/composite';
   private qrcodeUrl = 'https://api.qrserver.com/v1/create-qr-code'; // 3rd party api/service for QR Code
 
   constructor(private http: HttpClient) {}
 
+  getToken() {
+    const accessToken = localStorage.getItem('access_token');
+    return new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+  }
+
   getEvents(): Observable<any> {
-    return this.http.get<any>(`${this.baseEventsUrl}/events`);
+    return this.http.get<any>(`${this.baseCompositeUrl}/events`, { headers: this.getToken() });
   }
 
   getBookings(uid: string): Observable<any> {
-    return this.http.get<any>(`${this.baseTicketsUrl}/ticket?uid=${uid}`);
+    return this.http.get<any>(`${this.baseCompositeUrl}/ticket/user/${uid}`, { headers: this.getToken() });
   }
 
   getEventById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.baseEventsUrl}/events/${id}`);
+    return this.http.get<any>(`${this.baseCompositeUrl}/events/${id}`, { headers: this.getToken() });
   }
 
   getEventsForOrganiser(orgId: string): Observable<any> {
-    return this.http.get<any>(`${this.baseEventsUrl}/events/organizer/${orgId}`);
+    return this.http.get<any>(`${this.baseCompositeUrl}/events/organiser/${orgId}`, { headers: this.getToken() });
   }
 
   getLoginUrl(type: string) {
-    return `${this.baseUsersUrl}/login?profile=${type}`;
+    return `${'http://localhost:8000'}/login?profile=${type}`;
   }
 
   getProfile(role: string): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get(`${this.baseUsersUrl}/${role}`, { headers });
+    return this.http.get(`${this.baseCompositeUrl}/${role}`, { headers: this.getToken() });
   }
 
   getProfileById(role: string, id: string): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get(`${this.baseUsersUrl}/${role}/${id}`, { headers });
+    return this.http.get(`${this.baseCompositeUrl}/${role}/${id}`, { headers: this.getToken() });
   }
 
   createProfile(profileData: any, role: string): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.post(`${this.baseUsersUrl}/${role}`, profileData, { headers });
+    return this.http.post(`${this.baseCompositeUrl}/${role}`, profileData, { headers: this.getToken() });
   }
 
   getAttendees(eid: string): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get(`${this.baseTicketsUrl}/ticket/event/${eid}/users`, { headers });
+    return this.http.get(`${this.baseCompositeUrl}/ticket/event/${eid}/users`, { headers: this.getToken() });
   }
 
   addEvent(event: any): Observable<any> {
-    return this.http.post<any>(`${this.baseEventsUrl}/events`, event);
+    return this.http.post<any>(`${this.baseCompositeUrl}/events`, event, { headers: this.getToken() });
   }
 
   updateEvent(event: any): Observable<any> {
-    return this.http.put<any>(`${this.baseEventsUrl}/events`, event);
+    return this.http.put<any>(`${this.baseCompositeUrl}/events`, event, { headers: this.getToken() });
   }
 
   updateGuests(eid: string, guest: number): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.patch<any>(`${this.baseEventsUrl}/events/${eid}/${guest}`, { headers });
+    return this.http.patch<any>(`${this.baseCompositeUrl}/events/${eid}/${guest}`, {}, { headers: this.getToken() });
   }
 
   purchaseTicket(ticket: any): Observable<any> {
-    return this.http.post<any>(`${this.baseTicketsUrl}/ticket`, ticket);
+    return this.http.post<any>(`${this.baseCompositeUrl}/ticket`, ticket, { headers: this.getToken() });
   }
 
   getTicketDetails(ticketId: string): Observable<any> {
-    return this.http.get(`${this.baseTicketsUrl}/ticket/${ticketId}`);
+    return this.http.get(`${this.baseCompositeUrl}/ticket/${ticketId}`, { headers: this.getToken() });
   }
 
   getQrcode(ticketId: string): Observable<Blob> {

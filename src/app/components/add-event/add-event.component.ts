@@ -57,7 +57,7 @@ export class AddEventComponent implements OnInit {
         {'EID': generateUUID(), 'OID': localStorage.getItem('user_id'), 'Name': name, 'EventCategory': category, 'EventDesc': desc, 'EventDate': date, 'Location': location, 'EventTimeStart': eventTimeStart,
         'EventTimeEnd': eventTimeEnd, 'GuestsRem': ticketsAvb, "MaxGuestsPerTicket": maxGuestsPerTicket, "Price": price}
       ).subscribe(resp => {
-        if ('EID' in resp) {
+        if ('EID' in resp['data']) {
           confirm('Event Created Successfully');
           this.location.back();
         } else {

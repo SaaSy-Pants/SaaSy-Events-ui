@@ -29,8 +29,8 @@ export class OrganizerComponent implements OnInit {
     if (orgId != null){
       this.compositeService.getEventsForOrganiser(orgId).subscribe({
         next: (events) => {
-          if (events && events['events']){
-            this.eventList = events['events']
+          if (events && events['data']['events']){
+            this.eventList = events['data']['events']
           }
         },
         error: (err) => {

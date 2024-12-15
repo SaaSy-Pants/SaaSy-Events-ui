@@ -33,8 +33,8 @@ export class EventListComponent implements OnInit {
   loadEvents(): void {
     this.compositeService.getEvents().subscribe({
       next: (events) => {
-        if (events && events.result){
-          this.eventList = events.result.data
+        if (events && events.data && events.data.result && events.data.result.data) {
+          this.eventList = events.data.result.data
         }
       },
       error: (err) => {

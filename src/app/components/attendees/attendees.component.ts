@@ -20,9 +20,10 @@ export class AttendeesComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.compositeService.getAttendees(params['eventId']).subscribe({
         next: (attendees) => {
+          attendees = attendees['data']
           const attendeeRequest = attendees['uids'].map(async (attendee: { UID: string; NumGuests: number }) =>  {
             const attendeeObject = await firstValueFrom(this.compositeService.getProfileById('user', attendee['UID']));
-            return {...attendeeObject['details'], NumGuests: attendee['NumGuests']}
+            return {...attendeeObject['data']['details'], NumGuests: attendee['NumGuests']}
           });
 
           Promise.all(attendeeRequest)

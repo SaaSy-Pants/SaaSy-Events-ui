@@ -60,9 +60,9 @@ export class DashboardComponent implements OnInit{
         ).subscribe(profile => {
           if (profile) {
             if (this.profile == 'user')
-              localStorage.setItem("user_id", profile['details']['UID']);
+              localStorage.setItem("user_id", profile['data']['details']['UID']);
             else
-              localStorage.setItem("user_id", profile['details']['OID']);
+              localStorage.setItem("user_id", profile['data']['details']['OID']);
             this.isProfileLoaded = true;
           }
         });

@@ -35,10 +35,10 @@ export class UpcomingBookingsComponent implements OnInit {
     if (userId != null) {
       this.compositeService.getBookings(userId).subscribe({
         next: (bookings) => {
-          if (bookings && bookings.tickets) {
-            const eventRequests = bookings.tickets.map(async (ticket: { TID: string, EID: string }) => {
+          if (bookings && bookings.data && bookings.data.tickets) {
+            const eventRequests = bookings.data.tickets.map(async (ticket: { TID: string, EID: string }) => {
               const event = await firstValueFrom(this.compositeService.getEventById(ticket['EID']));
-              return {...event, TID: ticket.TID};
+              return {...event['data'], TID: ticket.TID};
             });
 
             Promise.all(eventRequests)

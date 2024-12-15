@@ -42,6 +42,7 @@ export class BookingConfirmationComponent implements OnInit {
   getTicketDetails(): void {
     this.compService.getTicketDetails(this.ticketId).subscribe({
       next: (details: any) => {
+        details = details['data']
         this.ticketDetails = details; // Handle the ticket details
         this.eventId = details.EID;
 
@@ -60,6 +61,7 @@ export class BookingConfirmationComponent implements OnInit {
     this.compService.getEventById(this.eventId).subscribe({
       next: (details: any) => {
         // Convert the duration format to a time string
+        details = details['data']
         this.eventStartTime = this.convertDurationToTime(details.EventTimeStart);
         this.eventEndTime = this.convertDurationToTime(details.EventTimeEnd);
 

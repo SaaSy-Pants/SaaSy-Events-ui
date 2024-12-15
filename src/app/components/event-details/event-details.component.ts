@@ -23,6 +23,7 @@ export class EventDetailsComponent implements OnInit {
         if (eventId) {
             this.compositeService.getEventById(eventId).subscribe({
               next: (data) => {
+                data = data.data
                 // Map the API response to the expected fields
                 this.event = {
                   id: data.EID,
@@ -40,7 +41,7 @@ export class EventDetailsComponent implements OnInit {
 
                 this.compositeService.getProfileById('organiser', data.OID).subscribe({
                   next: (organiser) => {
-                    organiser = organiser.details
+                    organiser = organiser.data.details
                     this.organiser = {
                       name: organiser.Name,
                       email: organiser.Email,
@@ -77,8 +78,7 @@ export class EventDetailsComponent implements OnInit {
       next: (response) => {
         this.compositeService.updateGuests(this.event.id, this.event.ticketsAvailable - this.ticketsToBuy).subscribe({
           next: () => {
-            console.log('Ticket purchase successful:', response);
-            this.router.navigate([`/booking-confirmation`, response['TID']]).then(() => {})
+            this.router.navigate([`/booking-confirmation`, response['data']['TID']]).then(() => {})
           }
         });
       },
