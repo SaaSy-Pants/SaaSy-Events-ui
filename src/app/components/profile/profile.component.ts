@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.compositeService.getProfile(params['role']).subscribe({
         next: (profile) => {
-          this.user = profile['details'];
+          this.user = profile['data']['details'];
         },
         error: (err) => {
           console.error('Error fetching events:', err);

@@ -74,6 +74,7 @@ export class UpdateEventComponent implements OnInit {
     if (this.eventId && this.eventId !== '') {
       this.service.getEventById(this.eventId).subscribe({
         next: (eventData) => {
+          eventData = eventData['data']
           this.eventForm.patchValue({
             Name: eventData.Name,
             EventCategory: eventData.EventCategory,
@@ -113,7 +114,7 @@ export class UpdateEventComponent implements OnInit {
         {'EID': this.eventId, 'OID': localStorage.getItem('user_id'), 'Name': name, 'EventCategory': category, 'EventDesc': desc, 'EventDate': date, 'Location': location, 'EventTimeStart': eventTimeStart,
           'EventTimeEnd': eventTimeEnd, 'GuestsRem': ticketsAvb, "MaxGuestsPerTicket": maxGuestsPerTicket, "Price": price}
       ).subscribe(resp => {
-        if ('EID' in resp) {
+        if ('EID' in resp['data']) {
           confirm('Event Updated Successfully');
           this.location.back();
         } else {
