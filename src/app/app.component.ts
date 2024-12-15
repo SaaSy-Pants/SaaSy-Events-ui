@@ -6,6 +6,7 @@ import {EventListComponent} from "./components/event-list/event-list.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import { BookingConfirmationComponent } from './components/booking-confirmation/booking-confirmation.component';
 import {ProfileComponent} from "./components/profile/profile.component";
+import {UpdateEventComponent} from "./components/update-event/update-event.component";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
   standalone: true,
   imports: [
     RouterOutlet, AddEventComponent, EventDetailsComponent, EventListComponent, NavbarComponent, BookingConfirmationComponent,
-    ProfileComponent
+    ProfileComponent, UpdateEventComponent
   ],
   styleUrl: './app.component.css'
 })

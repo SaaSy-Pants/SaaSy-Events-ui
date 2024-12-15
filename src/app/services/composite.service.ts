@@ -61,6 +61,10 @@ export class CompositeService {
     return this.http.post<any>(`${this.baseEventsUrl}/events`, event);
   }
 
+  updateEvent(event: any): Observable<any> {
+    return this.http.put<any>(`${this.baseEventsUrl}/events`, event);
+  }
+
   updateGuests(eid: string, guest: number): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
