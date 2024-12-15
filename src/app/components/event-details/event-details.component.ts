@@ -72,6 +72,8 @@ export class EventDetailsComponent implements OnInit {
       uid: localStorage.getItem('user_id'),
       eid: this.event.id,
       num_guests: this.ticketsToBuy,
+      event_name: this.event.name,
+      user_email: localStorage.getItem('email'),
     };
 
     this.compositeService.purchaseTicket(ticket).subscribe({

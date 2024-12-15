@@ -81,13 +81,16 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   convertDurationToTime(duration: string): string {
-    // Convert the PT9H format into hours
-    const match = duration.match(/^PT(\d+)H$/);
-    if (match && match[1]) {
-      const hours = parseInt(match[1], 10);
-      const hoursString = hours < 10 ? '0' + hours : hours.toString();  // Formatting hours
-      return `${hoursString}:00`;  // Default minutes to '00'
+    const match = duration.match(/^PT(?:(\d+)H)?(?:(\d+)M)?$/);
+    if (match) {
+      const hours = match[1] ? parseInt(match[1], 10) : 0;
+      const minutes = match[2] ? parseInt(match[2], 10) : 0;
+
+      const hoursString = hours < 10 ? '0' + hours : hours.toString();
+      const minutesString = minutes < 10 ? '0' + minutes : minutes.toString();
+
+      return `${hoursString}:${minutesString}`;
     }
-    return 'Invalid time';  // In case the format is unexpected
+    return 'Invalid time';
   }
 }
