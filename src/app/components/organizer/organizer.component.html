@@ -5,7 +5,6 @@
       <li
         *ngFor="let event of eventList"
         class="list-group-item"
-        (click)="viewEventAttendees(event.EID)"
       >
         <div class="card">
           <div class="card-body">
@@ -15,11 +14,26 @@
             <p class="card-text"><strong>Location:</strong> {{ event.Location }}</p>
             <p class="card-text">
               <strong>Date:</strong> {{ event.EventDate }}
-              <strong>Time:</strong> {{ event.EventTimeStart | timeFormat }} - {{ event.EventTimeEnd | timeFormat}}
+              <strong>Time:</strong> {{ event.EventTimeStart | timeFormat }} - {{ event.EventTimeEnd | timeFormat }}
             </p>
             <p class="card-text"><strong>Spots Remaining:</strong> {{ event.GuestsRem }}</p>
             <p class="card-text"><strong>Maximum Guests Per Ticket:</strong> {{ event.MaxGuestsPerTicket }}</p>
             <p class="card-text"><strong>Price:</strong> ${{ event.Price }}</p>
+            <!-- Edit Event Button -->
+            <button
+              class="btn btn-primary mt-2"
+              (click)="viewEventAttendees(event.EID)"
+            >
+              View Attendees
+            </button>
+            <!-- Edit Event Button -->
+            <button
+              style="margin-left:10px;"
+              class="btn btn-primary mt-2"
+              (click)="editEvent(event.EID)"
+            >
+              Edit Event
+            </button>
           </div>
         </div>
       </li>

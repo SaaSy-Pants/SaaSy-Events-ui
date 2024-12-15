@@ -39,4 +39,8 @@ export class OrganizerComponent implements OnInit {
       });
     }
   }
+
+  editEvent(EID: any) {
+    this.router.navigate([`/updateEvent`, EID]).then(() => {})
+  }
 }
