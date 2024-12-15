@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit {
           localStorage.setItem('user_id', user.UID)
         else
           localStorage.setItem('user_id', user.OID)
+        localStorage.setItem('email', user.Email);
         this.router.navigate(['/dashboard', this.profile]).then(() => {});
       })
     }

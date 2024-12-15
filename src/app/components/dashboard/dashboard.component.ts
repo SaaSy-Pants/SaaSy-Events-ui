@@ -63,6 +63,7 @@ export class DashboardComponent implements OnInit{
               localStorage.setItem("user_id", profile['data']['details']['UID']);
             else
               localStorage.setItem("user_id", profile['data']['details']['OID']);
+            localStorage.setItem("email", profile['data']['details']['Email']);
             this.isProfileLoaded = true;
           }
         });
