@@ -42,6 +42,7 @@ export class SignupComponent implements OnInit {
       this.compositeService.createProfile(
         {'PhoneNo': phoneNo, 'Address': address, 'Age': age}, this.profile
       ).subscribe(user => {
+        user = user['data']
         if (this.profile == 'user')
           localStorage.setItem('user_id', user.UID)
         else
